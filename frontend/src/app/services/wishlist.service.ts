@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../models/items';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WishlistService {
-  constructor() {}
+  private apiRoute = 'Wishlist';
 
-  public getWishlist(): Item[] {
-    let item = new Item();
-    item.id = '1';
-    item.name = 'Item 1';
-    item.description = 'This is item 1';
-    item.price = 100.0;
-    item.quantity = 1;
-    item.image =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDahnud_WsFulNFAkQLAwWeZlMRbJzMaIcZQ&usqp=CAU';
+  constructor(private http: HttpClient) {}
 
-    return [item, item, item, item, item, item, item, item, item, item];
+  public getWishlist(): Observable<Item[]> {
+    return this.http.get<Item[]>(`${environment.baseApiUrl}/${this.apiRoute}`);
   }
 }

@@ -14,7 +14,8 @@ export class AppComponent {
   constructor(private wishlistService: WishlistService) {}
 
   ngOnInit(): void {
-    this.wishlist = this.wishlistService.getWishlist();
-    console.log(this.wishlist);
+    this.wishlistService
+      .getWishlist()
+      .subscribe((result: Item[]) => (this.wishlist = result));
   }
 }
