@@ -10,6 +10,15 @@ import { WishlistService } from './services/wishlist.service';
 export class AppComponent {
   title = 'frontend';
   wishlist: Item[] = [];
+  itemToEdit?: Item;
+  displayedColumns: string[] = [
+    'name',
+    'description',
+    'price',
+    'quantity',
+    'image',
+    'actions',
+  ];
 
   constructor(private wishlistService: WishlistService) {}
 
@@ -17,5 +26,17 @@ export class AppComponent {
     this.wishlistService
       .getWishlist()
       .subscribe((result: Item[]) => (this.wishlist = result));
+  }
+
+  initNewItem() {
+    this.itemToEdit = new Item();
+  }
+
+  editItem(item: Item) {
+    this.itemToEdit = item;
+  }
+
+  updateItems(items: Item[]) {
+    this.wishlist = items;
   }
 }

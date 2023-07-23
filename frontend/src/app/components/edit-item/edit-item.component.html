@@ -1,0 +1,70 @@
+<div *ngIf="item">
+  <mat-grid-list cols="1" rowHeight="80px">
+    <mat-grid-tile>
+      <mat-form-field style="margin: 20px">
+        <mat-label>Name</mat-label>
+        <input [(ngModel)]="item.name" placeholder="Name" matInput />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field style="margin: 20px">
+        <mat-label>Description</mat-label>
+        <input
+          [(ngModel)]="item.description"
+          placeholder="Description"
+          matInput
+        />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field style="margin: 20px">
+        <mat-label>Price</mat-label>
+        <input [(ngModel)]="item.price" placeholder="Price" matInput />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field style="margin: 20px">
+        <mat-label>Quantity</mat-label>
+        <input [(ngModel)]="item.quantity" placeholder="Quantity" matInput />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field style="margin: 20px">
+        <mat-label>Image</mat-label>
+        <input [(ngModel)]="item.image" placeholder="Image" matInput />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <button
+        (click)="updateItem(item)"
+        *ngIf="item.id"
+        mat-raised-button
+        color="secondary"
+      >
+        Edit
+      </button>
+      <button
+        style="margin: 5px"
+        (click)="deleteItem(item)"
+        *ngIf="item.id"
+        mat-raised-button
+        color="warn"
+      >
+        Delete
+      </button>
+      <button
+        (click)="createItem(item)"
+        *ngIf="!item.id"
+        mat-raised-button
+        color="primary"
+      >
+        Create
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

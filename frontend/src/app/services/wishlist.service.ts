@@ -15,4 +15,24 @@ export class WishlistService {
   public getWishlist(): Observable<Item[]> {
     return this.http.get<Item[]>(`${environment.baseApiUrl}/${this.apiRoute}`);
   }
+
+  public updateItem(item: Item): Observable<Item[]> {
+    return this.http.put<Item[]>(
+      `${environment.baseApiUrl}/${this.apiRoute}`,
+      item
+    );
+  }
+
+  public createItem(item: Item): Observable<Item[]> {
+    return this.http.post<Item[]>(
+      `${environment.baseApiUrl}/${this.apiRoute}`,
+      item
+    );
+  }
+
+  public deleteItem(item: Item): Observable<Item[]> {
+    return this.http.delete<Item[]>(
+      `${environment.baseApiUrl}/${this.apiRoute}/${item.id}`
+    );
+  }
 }
